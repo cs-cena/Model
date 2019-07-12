@@ -1,0 +1,3 @@
+自己找数据建SQLITE3的库
+
+记得改views里的DATABASE路径
