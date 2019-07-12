@@ -4,7 +4,7 @@ from app import app
 import sqlite3
 
 
-DATABASE = r'C:\Users\chensheng\Desktop\project\test_monitor\spider.db'
+DATABASE = r'C:\Users\***\Desktop\project\test_monitor\spider.db'
 
 
 def get_db():
