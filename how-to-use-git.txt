@@ -4,5 +4,6 @@ git clone https://github.com/cs-cena/Model.git
 
 本地变更推送到远程仓库
 git add .
+(选择更新远程仓库到本地 git pull origin master)
 git commit -m '内容'
 git push -u origin master
