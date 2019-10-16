@@ -1,0 +1,8 @@
+克隆远程仓库到本地: 
+git clone https://github.com/cs-cena/Model.git
+参考：https://blog.csdn.net/wu347771769/article/details/88999943
+
+本地变更推送到远程仓库
+git add .
+git commit -m '内容'
+git push -u origin master
