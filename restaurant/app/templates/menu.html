@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>McDonald's Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
 
   </head>
   <body>
@@ -57,32 +57,45 @@
     <!--巨幕-->
     <div class="jumbotron">
       <div class="container">
-      <h1 style="font-size:65px">屎当劳，畅吃畅爽！</h1>
-      <p>吃辣翅，不喝冰阔落！<br>好比烧菜不放盐！<br></p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">点我吃麦当劳</a></p>
+        <h1>麦当劳，畅吃畅爽！</h1>
+        <p>如果饿了, 点一个双层吉士汉堡，加个菠萝派！</p>
+        <p>如果不开心, 点一对麦辣鸡翅，加冰阔落！</p>
+        <p>如果很开心, 点一份巨无霸套餐，加一对辣翅！</p>
+        <p>肥宅的快乐就是这么简单, 且朴实无华！</p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">快乐下单 ^^</a>
+          <img src="../static/images/burger.ico" alt="burger" class="img-rounded">
+        </p>
       </div>
     </div>
 
     
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-4">
           <!--带面板的列表组-->
           <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Panel heading</div>
-            <div class="panel-body">
-            <p>...</p>
-          </div>
+            <div class="panel-heading">肥宅快乐餐</div>
 
-          <!-- List group -->          
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
+            <!-- List group -->          
+            <ul class="list-group">
+              <li class="list-group-item">巨无霸套餐
+                <button class="btn btn-default btn-sm" type="submit">+</button>
+              </li>
+              <li class="list-group-item">双层吉士汉堡套餐
+                <button class="btn btn-default btn-sm" type="submit">+</button>
+              </li>
+              <li class="list-group-item">麦辣鸡翅套餐
+                <button class="btn btn-default btn-sm" type="submit">+</button>
+              </li>
+              <li class="list-group-item">经典麦辣鸡腿汉堡套餐
+                <button class="btn btn-default btn-sm" type="submit">+</button>
+              </li>
+              <li class="list-group-item">原味板烧鸡腿堡套餐
+                <button class="btn btn-default btn-sm" type="submit">+</button>
+              </li>
+            </ul>
         </div>  
       </div>
     </div>
