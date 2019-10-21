@@ -20,3 +20,9 @@ hr {
     border-top: 1px solid #eee;
 }
 
+.form-control {
+	width: 55px;
+	display:inline-block;
+}
+
+
