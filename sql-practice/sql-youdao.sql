@@ -130,3 +130,105 @@ FROM SC
 WHERE sc.score < 60
 */
 
+--查询不同课程成绩相同的学生的学生编号、课程编号、学生成绩【where exists 和自己比】
+/*
+SELECT *
+FROM SC AS t1
+WHERE EXISTS(
+SELECT *
+FROM SC AS t2
+WHERE t1.sid = t2.sid
+AND t1.cid != t2.cid
+AND t1.score = t2.score
+)
+*/
+
+--查询每门功成绩最好的前两名
+/*
+SELECT *
+FROM SC as t1
+WHERE 
+( SELECT count(*)
+FROM SC AS t2
+WHERE t1.cid = t2.cid
+AND t1.score < t2.score
+) < 2
+ORDER BY t1.cid
+*/
+
+--统计每门课程的学生选修人数（超过 5 人的课程才统计）
+/*
+SELECT sc.cid, count(sc.sid)
+FROM SC
+GROUP BY SC.CId
+HAVING count(sc.sid)>5
+*/
+
+--检索至少选修两门课程的学生学号
+/*
+SELECT SC.SID
+FROM SC
+GROUP BY SC.SId
+HAVING count(sc.cid) >= 2 
+*/
+
+--查询选修了全部课程的学生信息
+/*
+SELECT SC.SID
+FROM SC
+GROUP BY SC.SId
+HAVING count(sc.cid) = (SELECT count(Cor.CID)
+FROM Course as cor)
+*/
+
+
+--查询各学生的年龄，只按年份来算
+/*
+SELECT st.sid, (strftime('%Y', "now") - strftime('%Y', st.Sage)) as age
+FROM Student AS st
+*/
+
+--按照出生日期来算，当前月日 < 出生年月的月日则，年龄减一
+/*
+SELECT st.sid, (CASE WHEN strftime('%m-%d', "now")-strftime('%m-%d', st.Sage) < 0 THEN t.age-1 ELSE t.age END) AS age
+FROM Student AS st,
+(SELECT st.sid, (strftime('%Y', "now") - strftime('%Y', st.Sage)) as age
+FROM Student AS st
+) AS t
+WHERE t.sid = st.SId
+*/
+
+
+--查询本周过生日的学生
+/*
+SELECT st.sid, st.sname
+FRoM student AS st 
+WHERE strftime('2019-%m-%d', st.sage) BETWEEN date('now', 'start of day', '-7 day', 'weekday 1') AND date('now', 'start of day', 'weekday 0');
+*/
+
+--weekday N N为周几，一周设定奇怪，56是本周的周五这周六。01234是下周的周天周一到周四
+--含义是返回第一个时间参数（或修饰过后的时间）所在周的下一周的周几。会加一周
+--SELECT date('now', 'start of day', '-7 day', 'weekday 0')
+
+
+--查询下周过生日的学生
+/*
+SELECT st.sid, st.sname
+FRoM student AS st 
+WHERE strftime('2019-%m-%d', st.sage) BETWEEN date('now', 'start of day', 'weekday 1') AND date('now', 'start of day', '+7 day', 'weekday 0');
+*/
+
+
+--查询本月过生日的学生
+/*
+SELECT st.sid, st.sname
+FRoM student AS st 
+WHERE strftime('2019-%m-%d', st.sage) BETWEEN date('now', 'start of month') AND date('now', 'start of month', '+1 month', '-1 day')
+*/
+
+--查询下月过生日的学生
+/*
+SELECT st.sid, st.sname
+FRoM student AS st 
+WHERE strftime('2019-%m-%d', st.sage) BETWEEN date('now', 'start of month', '+1 month') AND date('now', 'start of month', '+2 month', '-1 day') 
+*/
