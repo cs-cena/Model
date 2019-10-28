@@ -1,9 +1,13 @@
-.jumbotron{
+.jumbotron {
     text-align: left;
 }
 
-.panel li, .panel-heading {
-	font-size: 15px;
+.list-group-item {
+	padding: 20px 10px 20px 20px;
+}
+
+.media-body {
+	padding: 0px 15px;
 }
 
 .footer {
@@ -20,9 +24,24 @@ hr {
     border-top: 1px solid #eee;
 }
 
-.form-control {
-	width: 55px;
+#minus, #plus, #meal-amount {
+	width: 30px;
 	display:inline-block;
+	text-align:center;
 }
 
 
+#price {
+	font-size: 25px;
+	padding: 5px 0;
+	color: orange;
+}
+
+#total {
+	width: 60px;
+	display:inline-block;
+}
+
+label {
+	font-size: 20px;
+}
