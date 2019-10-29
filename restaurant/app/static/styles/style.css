@@ -3,7 +3,7 @@
 }
 
 .list-group-item {
-	padding: 20px 10px 20px 20px;
+	padding: 25px 10px 20px 20px;
 }
 
 .media-body {
@@ -37,11 +37,10 @@ hr {
 	color: orange;
 }
 
-#total {
-	width: 60px;
+#price-total {
+	font-size: 25px;
+	padding: 5px 0;
+	color: orange;
 	display:inline-block;
 }
 
-label {
-	font-size: 20px;
-}

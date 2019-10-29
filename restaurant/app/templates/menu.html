@@ -53,7 +53,6 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-
     <!--巨幕-->
     <div class="jumbotron">
       <div class="container">
@@ -68,13 +67,11 @@
         </p>
       </div>
     </div>
-
-    
+   
     <div class="container">
       <div class="row">
         <div class="col-md-5">
-
-          <!-- List group -->          
+          <!--菜单-->          
           <ul class="list-group">             
             <li class="list-group-item">
               <div class="media">
@@ -85,7 +82,7 @@
                   <h4 class="media-heading"><strong>巨无霸套餐</strong></h4>
                   <p>巨无霸1份+麦辣鸡翅2块+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">1</div>
+                  <div id="meal-amount">0</div>
                   <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
                   <div id="price">￥34.5</div>
                 </div>
@@ -101,7 +98,7 @@
                   <h4 class="media-heading"><strong>双层吉士汉堡套餐</strong></h4>
                   <p>双层吉士汉堡1份+麦辣鸡翅2块+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">1</div>
+                  <div id="meal-amount">0</div>
                   <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
                   <div id="price">￥34.5</div>
                 </div>
@@ -117,7 +114,7 @@
                   <h4 class="media-heading"><strong>麦辣鸡翅套餐</strong></h4>
                   <p>麦辣鸡翅2块+中可乐1份+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">1</div>
+                  <div id="meal-amount">0</div>
                   <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
                   <div id="price">￥34.5</div>
                 </div>
@@ -133,7 +130,7 @@
                   <h4 class="media-heading"><strong>经典麦辣鸡腿堡套餐</strong></h4>
                   <p>经典麦辣鸡腿堡1份+中可乐1份+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">1</div>
+                  <div id="meal-amount">0</div>
                   <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
                   <div id="price">￥34.5</div>
                 </div>
@@ -149,22 +146,21 @@
                   <h4 class="media-heading"><strong>原味板烧鸡腿堡套餐</strong></h4>
                   <p>原味板烧鸡腿堡1份+中可乐1份+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">1</div>
+                  <div id="meal-amount">0</div>
                   <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
                   <div id="price">￥34.5</div>
                 </div>
               </div> 
             </li>
           </ul>
-
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="total" id="total1">Total :</label>
-              <input type="text" class="form-control" id="total" placeholder="" disabled>
-            </div>
-            <button type="submit" class="btn btn-default" >提交订单</button>
-          </form>
-
+          <!--总价-->   
+          <div id="price">
+            Total : <p id="price-total">0</p>
+          </div>          
+          <button type="button" class="btn btn-default" id="submit-price-total">提交订单</button>
+        </div>
+        <div class="col-md-7">
+          <div id="e-table1" style="width:600px; height:400px;"></div>
         </div>
       </div>
     </div>
@@ -173,7 +169,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h4>肥宅的快乐，简单的快乐。</h4>
+            <h4><strong>肥宅的快乐，简单的快乐。</strong></h4>
             <p>希望有天可以经常吃麦当劳早餐！</p>
           </div>
         </div>  
@@ -181,8 +177,43 @@
       <hr>
     </footer>
 
+    <!--Echarts图表-->
+    <script>
+      var myChart = echarts.init(document.querySelector('#e-table1'));
+      myChart.setOption({
+          xAxis: {
+              type: 'category',
+              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+              type: 'value'
+          },
+          series: [{
+              data: [820, 932, 901, 934, 1290, 1330, 1320],
+              type: 'line'
+          }]
+      });
+
+      // 异步加载数据
+      /*
+      $.get('/db/kanong').done(function (data) {
+          // 填入数据
+          myChart.setOption({
+              xAxis: {
+                  data: data.usergroup
+              },
+              series: [{
+                  // 根据名字对应到相应的系列
+                  name: 'uid计数',
+                  data: data.countuid
+              }]
+          });
+      });
+      */      
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
     <script src="../static/scripts/main.js"></script>
   </body>
 </html>
