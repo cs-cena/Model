@@ -3,7 +3,8 @@ const minusBtns = document.querySelectorAll('#minus')
 const mealAmounts = document.querySelectorAll('#meal-amount')
 const prices = document.querySelectorAll('#price')
 const total = document.querySelector('#price-total')
-const totalBtn =  document.querySelector('#submit-price-total')
+const sendBtn =  document.querySelector('#submit-price-total')
+const mealName =  document.querySelectorAll('#meal-name')
 
 
 /*
@@ -33,6 +34,9 @@ function sumPrices() {
 }
 
 
+let menuJson = {}
+//menuJson = {"":[]}
+
 //加减按钮
 for (let i = 0; i < plusBtns.length; i++) {
 	plusBtns[i].onclick  = function() {
@@ -41,8 +45,9 @@ for (let i = 0; i < plusBtns.length; i++) {
 		p[i] = 34.5 * mealAmounts[i].textContent
 
 		totalPrice = sumPrices()
-
 		total.textContent = "￥" + totalPrice
+
+		menuJson[mealName[i].textContent] = [Number(mealAmounts[i].textContent), totalPrice]
 	}	
 }
 
@@ -57,10 +62,85 @@ for (let i = 0; i < minusBtns.length; i++) {
 			prices[i].textContent = "￥" + 34.5 * mealAmounts[i].textContent
 			p[i] = 34.5 * mealAmounts[i].textContent
 			totalPrice = sumPrices()			
-			total.textContent = "￥" + totalPrice			
+			total.textContent = "￥" + totalPrice
+
+			menuJson[mealName[i].textContent] = [Number(mealAmounts[i].textContent), totalPrice]			
 		}
 	}	
 }
+
+
+/* 验证可行 XHR(Ajax请求) 向服务器发送菜单json数据
+sendBtn.onclick = function() {
+	//发送页面数据据到服务端
+	let url = "/menulist"
+	var request = new XMLHttpRequest()
+	request.open('POST', url)
+	request.setRequestHeader("Content-Type","application/json")
+	request.send(JSON.stringify(menuJson))
+	
+	//接受服务端数据
+	request.onload = function() {
+		let rq = JSON.parse(request.response)
+		alert(Object.keys(rq))
+	}
+}
+*/
+
+
+//Fethch-POST请求  json()返回json text()返回文本 JSON.parse()文本转JSON对象
+
+var req = new Request('/menulist', {
+	method: "POST",
+	headers: { 'Content-Type': 'application/json' },
+	mode: "cors",
+	body: JSON.stringify({id: 111, dd: 888})
+})
+
+//这个还要试试
+sendBtn.onclick = function() {}
+
+/*
+//错误写法
+fetch(req)
+	.then(function(response) {
+		if(response.ok) {
+			response.json()			
+		}
+	})
+	.then(function(json) {
+		console.log(json)	
+	})
+*/
+
+//验证可行
+fetch(req).then(function(response) {
+	if(response.ok) {
+		response.json().then(function(json) {
+			console.log(json)
+		});
+	} else {
+    console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+  	}
+})
+
+
+/*
+//Fetch 请求客户端json数据
+fetch('/read_json/test.json').then(function(response) {
+	if(response.ok) {
+		response.json().then(function(json) {
+			console.log(json)
+		});
+	} else {
+    console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+  	}
+})
+
+*/
+
+
+
 
 
 

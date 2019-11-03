@@ -2,6 +2,7 @@
 from flask import request, render_template, jsonify
 from app import app
 import sqlite3
+import json
 
 
 DATABASE = r'C:\Users\Administrator\Desktop\modle\restaurant\restaurant.db'
@@ -23,8 +24,8 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-@app.route('/menu', methods=['GET'])
-def menu():
+@app.route('/menu111', methods=['GET'])
+def menu1111():
 
 	if request.method == "GET":
 
@@ -37,6 +38,23 @@ def menu():
 		return jsonify(did=[i[0] for i in res])
 
 
-@app.route('/orderlist')
-def index():
-	return render_template('figure.html')
+@app.route('/menu', methods=['GET'])
+def menu():
+	return render_template("menu.html")
+
+
+#flask接收客户端的get请求，读取本地json文件并将文件内容返回给客户端
+@app.route('/read_json/<json_name>', methods=['GET'])
+def test_js(json_name):
+	filename = json_name
+	path = r"C:/Users/Administrator/Desktop/Model/restaurant/app/"  #json文件所在的目录路径
+	with open(path + filename) as f:
+		jsonStr = json.load(f)
+		return json.dumps(jsonStr)
+
+#flask接收客户端post的json数据
+@app.route('/menulist', methods=["POST"])
+def menu_list():
+	if request.method == "POST":
+		rq = json.loads(request.get_data().decode('utf-8'))	
+		return jsonify(rq)

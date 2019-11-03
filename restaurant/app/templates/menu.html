@@ -81,7 +81,7 @@
                   <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><strong>巨无霸套餐</strong></h4>
+                  <h4 class="media-heading" id="meal-name"><strong>巨无霸套餐</strong></h4>
                   <p>巨无霸1份+麦辣鸡翅2块+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
                   <div id="meal-amount">0</div>
@@ -97,7 +97,7 @@
                   <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><strong>双层吉士汉堡套餐</strong></h4>
+                  <h4 class="media-heading" id="meal-name"><strong>双层吉士汉堡套餐</strong></h4>
                   <p>双层吉士汉堡1份+麦辣鸡翅2块+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
                   <div id="meal-amount">0</div>
@@ -113,7 +113,7 @@
                   <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><strong>麦辣鸡翅套餐</strong></h4>
+                  <h4 class="media-heading" id="meal-name"><strong>麦辣鸡翅套餐</strong></h4>
                   <p>麦辣鸡翅2块+中可乐1份+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
                   <div id="meal-amount">0</div>
@@ -129,7 +129,7 @@
                   <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><strong>经典麦辣鸡腿堡套餐</strong></h4>
+                  <h4 class="media-heading" id="meal-name"><strong>经典麦辣鸡腿堡套餐</strong></h4>
                   <p>经典麦辣鸡腿堡1份+中可乐1份+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
                   <div id="meal-amount">0</div>
@@ -145,7 +145,7 @@
                   <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading"><strong>原味板烧鸡腿堡套餐</strong></h4>
+                  <h4 class="media-heading" id="meal-name"><strong>原味板烧鸡腿堡套餐</strong></h4>
                   <p>原味板烧鸡腿堡1份+中可乐1份+中薯条1份</p>
                   <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
                   <div id="meal-amount">0</div>
@@ -195,6 +195,7 @@
         return(Min + Math.round(Rand * Range));  
       } 
 
+      //添加数据
       function addData(shift) {
         data.push(GetRandomNum(100, 500));
         data2.push(GetRandomNum(1, 5));
@@ -224,6 +225,7 @@
           }]
       });
 
+      //动态更新数据
       setInterval(function () {
         addData(true)
         myChart.setOption({
