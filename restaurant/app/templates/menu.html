@@ -164,7 +164,6 @@
         <!--Echarts图表-->
         <div class="col-md-7">
           <div id="e-table1" style="width:600px; height:400px;"></div>
-          <button class="btn btn-default" type="button" id="ech-btn">Button</button>
         </div>
       </div>
     </div>
@@ -225,7 +224,7 @@
           }]
       });
 
-      //动态更新数据
+      //动态定时通过setoption来更新数据，
       setInterval(function () {
         addData(true)
         myChart.setOption({
