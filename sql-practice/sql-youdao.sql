@@ -232,3 +232,23 @@ SELECT st.sid, st.sname
 FRoM student AS st 
 WHERE strftime('2019-%m-%d', st.sage) BETWEEN date('now', 'start of month', '+1 month') AND date('now', 'start of month', '+2 month', '-1 day') 
 */
+
+
+--Germany德国（人口8000万），在Europe欧洲国家的人口最多。Austria奥地利（人口850万）拥有德国总人口的11％。
+--显示欧洲的国家名称name和每个国家的人口population。以德国的人口的百分比作人口显示
+/*
+select w.name, concat(round(w.population/t.population*100, 0),'%')
+from world as w, (select population from world where name = 'Germany') as t
+where w.continent = 'Europe'
+*/
+
+--有些国家的人口是同洲份的所有其他国的3倍或以上
+/*
+select x.name, x.continent
+from world x
+where x.population/3 >= all(
+	select population 
+	from world y 
+	where y.continent = x.continent and population > 0 and x.name != y.name
+	)
+*/
