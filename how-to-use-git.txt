@@ -1,9 +1,18 @@
-克隆远程仓库到本地: 
+﻿克隆远程仓库到本地: 
 git clone https://github.com/cs-cena/Model.git
 参考：https://blog.csdn.net/wu347771769/article/details/88999943
+
+更新远程仓库到本地
+git remote -v
+git fetch origin master:temp
+git diff temp （按q退出）
+git merge temp
+git branch -d temp
+参考：https://www.cnblogs.com/zhaijiahui/p/9006816.html
 
 本地变更推送到远程仓库
 git add .
 (选择更新远程仓库到本地 git pull origin master)
 git commit -m '内容'
 git push -u origin master
+

@@ -1,22 +1,17 @@
+/*巨幕*/
 .jumbotron {
     text-align: left;
 }
 
-.list-group-item {
-	padding: 25px 10px 20px 20px;
-}
-
-.media-body {
-	padding: 0px 15px;
-}
-
+/*页脚*/
 .footer {
-    padding: 30px 0;
     margin-top: 70px;
     border-top: 1px solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
+    padding: 30px 0;
 }
 
+/*分割线*/
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -24,23 +19,43 @@ hr {
     border-top: 1px solid #eee;
 }
 
-#minus, #plus, #meal-amount {
-	width: 30px;
-	display:inline-block;
-	text-align:center;
+/*menu*/
+.list-group-item {
+    padding: 25px 10px 20px 20px;
+}
+
+.media-body {
+    padding: 0px 15px;
+}
+
+#minus, #plus, #mealAmount {
+    display:inline-block;
+    width: 30px;
+    text-align:center;
 }
 
 
 #price {
-	font-size: 25px;
-	padding: 5px 0;
-	color: orange;
+    padding: 5px 0;
+
+    font-size: 25px;
+    color: orange;
 }
 
-#price-total {
-	font-size: 25px;
-	padding: 5px 0;
-	color: orange;
-	display:inline-block;
+#priceTotal {
+    display:inline-block;
+    padding: 5px 0;
+
+    font-size: 25px;    
+    color: orange;
 }
 
+/*diary*/
+.diary-section {
+    margin-top: 40px;
+}
+
+.diary-context {
+    margin-top: 20px;   
+    font-size: 15px;
+}

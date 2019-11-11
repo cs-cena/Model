@@ -1,263 +1,326 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>McDonald's Menu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/styles/style.css">
-    <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-  </head>
-  <body>
-    <!--导航条-->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Brand</a>
-        </div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>McDonald's Menu</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/styles/bootstrap-datetimepicker.css">
+        <link rel="stylesheet" href="../static/styles/style.css">
+        <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+        <script src="../static/scripts/bootstrap-datetimepicker.js"></script>
+    </head>
+    <body>
+        <!-- 导航条 -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">Brand</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+        <!-- 巨幕 -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>麦当劳，畅吃畅爽！</h1>
+                <p>如果饿了, 点一个双层吉士汉堡，加个菠萝派！</p>
+                <p>如果不开心, 点一对麦辣鸡翅，加冰阔落！</p>
+                <p>如果很开心, 点一份巨无霸套餐，加一对辣翅！</p>
+                <p>肥宅的快乐就是这么简单, 且朴实无华！</p>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">快乐下单 ^^</a>
+                    <img src="../static/images/burger.ico" alt="burger" class="img-rounded">
+                </p>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-
-    <!--巨幕-->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>麦当劳，畅吃畅爽！</h1>
-        <p>如果饿了, 点一个双层吉士汉堡，加个菠萝派！</p>
-        <p>如果不开心, 点一对麦辣鸡翅，加冰阔落！</p>
-        <p>如果很开心, 点一份巨无霸套餐，加一对辣翅！</p>
-        <p>肥宅的快乐就是这么简单, 且朴实无华！</p>
-        <p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">快乐下单 ^^</a>
-          <img src="../static/images/burger.ico" alt="burger" class="img-rounded">
-        </p>
-      </div>
-    </div>
-   
-    <!--主体-->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <!--菜单-->          
-          <ul class="list-group">             
-            <li class="list-group-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading" id="meal-name"><strong>巨无霸套餐</strong></h4>
-                  <p>巨无霸1份+麦辣鸡翅2块+中薯条1份</p>
-                  <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">0</div>
-                  <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
-                  <div id="price">￥34.5</div>
-                </div>
-              </div> 
-            </li>
-
-            <li class="list-group-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading" id="meal-name"><strong>双层吉士汉堡套餐</strong></h4>
-                  <p>双层吉士汉堡1份+麦辣鸡翅2块+中薯条1份</p>
-                  <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">0</div>
-                  <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
-                  <div id="price">￥34.5</div>
-                </div>
-              </div> 
-            </li>
-
-            <li class="list-group-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading" id="meal-name"><strong>麦辣鸡翅套餐</strong></h4>
-                  <p>麦辣鸡翅2块+中可乐1份+中薯条1份</p>
-                  <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">0</div>
-                  <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
-                  <div id="price">￥34.5</div>
-                </div>
-              </div> 
-            </li>
-
-            <li class="list-group-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading" id="meal-name"><strong>经典麦辣鸡腿堡套餐</strong></h4>
-                  <p>经典麦辣鸡腿堡1份+中可乐1份+中薯条1份</p>
-                  <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">0</div>
-                  <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
-                  <div id="price">￥34.5</div>
-                </div>
-              </div> 
-            </li>
-
-            <li class="list-group-item">
-              <div class="media">
-                <div class="media-left">
-                  <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">       
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading" id="meal-name"><strong>原味板烧鸡腿堡套餐</strong></h4>
-                  <p>原味板烧鸡腿堡1份+中可乐1份+中薯条1份</p>
-                  <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
-                  <div id="meal-amount">0</div>
-                  <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
-                  <div id="price">￥34.5</div>
-                </div>
-              </div> 
-            </li>
-          </ul>
-          <!--总价-->   
-          <div id="price">
-            Total : <p id="price-total">0</p>
-          </div>          
-          <button type="button" class="btn btn-default" id="submit-price-total">提交订单</button>
         </div>
-        <!--Echarts图表-->
-        <div class="col-md-7">
-          <div id="e-table1" style="width:600px; height:400px;"></div>
+
+        <!-- 主体 -->
+        <div class="container">
+            <div class="row">
+                <!--菜单-->
+                <div class="col-md-5">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" id="mealName"><strong>巨无霸套餐</strong></h4>
+                                    <p>巨无霸1份+麦辣鸡翅2块+中薯条1份</p>
+                                    <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
+                                    <div id="mealAmount">0</div>
+                                    <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
+                                    <div id="price">￥34.5</div>
+                                </div>
+                            </div> 
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" id="mealName"><strong>双层吉士汉堡套餐</strong></h4>
+                                    <p>双层吉士汉堡1份+麦辣鸡翅2块+中薯条1份</p>
+                                    <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
+                                    <div id="mealAmount">0</div>
+                                    <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
+                                    <div id="price">￥34.5</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" id="mealName"><strong>麦辣鸡翅套餐</strong></h4>
+                                    <p>麦辣鸡翅2块+中可乐1份+中薯条1份</p>
+                                    <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
+                                    <div id="mealAmount">0</div>
+                                    <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
+                                    <div id="price">￥34.5</div>
+                                </div>
+                            </div> 
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" id="mealName"><strong>经典麦辣鸡腿堡套餐</strong></h4>
+                                    <p>经典麦辣鸡腿堡1份+中可乐1份+中薯条1份</p>
+                                    <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
+                                    <div id="mealAmount">0</div>
+                                    <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
+                                    <div id="price">￥34.5</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="../static/images/menu-burger.ico" alt="burger" class="img-rounded">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading" id="mealName"><strong>原味板烧鸡腿堡套餐</strong></h4>
+                                    <p>原味板烧鸡腿堡1份+中可乐1份+中薯条1份</p>
+                                    <button class="btn btn-default btn-sm" id="minus" type="button">-</button>
+                                    <div id="mealAmount">0</div>
+                                    <button class="btn btn-default btn-sm" id="plus" type="button">+</button>
+                                    <div id="price">￥34.5</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!--总价-->
+                    <div id="price">
+                        Total : <p id="priceTotal">0</p>
+                    </div>
+                    <button type="button" class="btn btn-default" id="submitPriceTotal">提交订单</button>
+                </div>
+
+                <!--Echarts图表-->
+                <div class="col-md-7">
+                    <div id="eTable1" style="width:600px; height:400px;"></div>
+                </div>
+            </div>
+
+            <!-- 快餐记录 -->
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- 文本展示 -->
+                    <div id="diary">
+                        <div class="diary-section">                       
+                            <h3>2019年11月09日 麦当劳</h3>
+                            <div class="diary-context">
+                                今天点了正在搞会员价的麦辣鸡腿汉堡，原来想点辣翅，但是中午才吃了烤鸭，已经吃油了
+                                想想就算了，所以就再选了12元随心配——锡兰红茶+麦乐鸡块。因为红茶太烫了，就要了点冰块。
+                                棒！不过后来加多了，茶凉了。
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="diary-section">
+                            <h3>2019年11月09日 麦当劳</h3>
+                            <div class="diary-context">
+                                今天点了正在搞会员价的麦辣鸡腿汉堡，原来想点辣翅，但是中午才吃了烤鸭，已经吃油了
+                                想想就算了，所以就再选了12元随心配——锡兰红茶+麦乐鸡块。因为红茶太烫了，就要了点冰块。
+                                棒！不过后来加多了，茶凉了。
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <!--文本输入-->
+                    <form action="/diary" method="POST">
+                        <div class="form-group">
+                            <label for="diaryDate">日期：</label>
+                            <input type="text" class="form-control" id="diaryDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="diaryRest">餐厅：</label>
+                            <select class="form-control" name="diaryRest">
+                              <option>麦当劳</option>
+                              <option>肯德基</option>
+                              <option>汉堡王</option>
+                              <option>德克士</option>
+                            </select>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="diary">肥宅快乐记录：</label>
+                            <textarea class="form-control" name="diary-context" rows="10"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-default" id='diaryBtn'>提交</button>
+                        <button type="button" class="btn btn-default">重置</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4><strong>肥宅的快乐，简单的快乐。</strong></h4>
+                        <p>希望有天可以经常吃麦当劳早餐！</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </footer>
 
-    <!--页脚-->
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h4><strong>肥宅的快乐，简单的快乐。</strong></h4>
-            <p>希望有天可以经常吃麦当劳早餐！</p>
-          </div>
-        </div>  
-      </div>
-      <hr>
-    </footer>
+        <!-- Echarts图表 动态更新数据-->
+        <script>
 
-    <!--Echarts图表-->
-    <!--动态更新数据-->
-    <script>
+            let data = []
+            let data2 = []
 
-      let data = []
-      let data2 = []
+            function GetRandomNum(Min,Max) {
+                var Range = Max - Min;
+                var Rand = Math.random();
+                return(Min + Math.round(Rand * Range));
+            }
 
-      function GetRandomNum(Min,Max) {  
-        var Range = Max - Min;  
-        var Rand = Math.random();  
-        return(Min + Math.round(Rand * Range));  
-      } 
+            //添加数据
+            function addData(shift) {
+                data.push(GetRandomNum(100, 500));
+                data2.push(GetRandomNum(1, 5));
+                if (shift) {
+                    data.shift();
+                    data2.shift();
+                }
+            }
 
-      //添加数据
-      function addData(shift) {
-        data.push(GetRandomNum(100, 500));
-        data2.push(GetRandomNum(1, 5));
-        if (shift) {
-            data.shift();
-            data2.shift();
-        }
-      }    
+            for (var i = 1; i <= 20; i++) {
+                addData();
+            }
 
-      for (var i = 1; i <= 20; i++) {
-        addData();
-      }
+            var myChart = echarts.init(document.querySelector('#eTable1'));
+            myChart.setOption({
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name: "random",
+                    data: [],
+                    type: 'line'
+                }]
+            });
 
-      var myChart = echarts.init(document.querySelector('#e-table1'));
-      myChart.setOption({
-          xAxis: {
-              type: 'category',
-              data: []
-          },
-          yAxis: {
-              type: 'value'
-          },
-          series: [{
-              name: "random",
-              data: [],
-              type: 'line'
-          }]
-      });
-
-      //动态定时通过setoption来更新数据，
-      setInterval(function () {
-        addData(true)
-        myChart.setOption({
-            xAxis: {
-              data: data2
-            },
-            series: [{
-                name: 'random',
-                data: data
-            }]
-        });
-      }, 1000);//毫秒
+            //动态定时通过setoption来更新数据，
+            setInterval(function () {
+                addData(true)
+                myChart.setOption({
+                    xAxis: {
+                        data: data2
+                    },
+                    series: [{
+                        name: 'random',
+                        data: data
+                    }]
+                });
+            }, 1000);//毫秒
 
 
-      // 异步加载数据
-      /*
-      $.get('/db/kanong').done(function (data) {
-          // 填入数据
-          myChart.setOption({
-              xAxis: {
-                  data: data.usergroup
-              },
-              series: [{
-                  // 根据名字对应到相应的系列
-                  name: 'uid计数',
-                  data: data.countuid
-              }]
-          });
-      });
-      */      
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-    <script src="../static/scripts/main.js"></script>
-  </body>
+            // 异步加载数据
+            /*
+            $.get('/db/kanong').done(function (data) {
+                // 填入数据
+                myChart.setOption({
+                    xAxis: {
+                        data: data.usergroup
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: 'uid计数',
+                        data: data.countuid
+                    }]
+                });
+            });
+            */
+        </script>
+        <script>
+        //日期插件
+            $("#diaryDate").datetimepicker({
+                language: 'cn',
+                format: 'yyyy-mm-dd',//显示格式
+                todayHighlight: 1,//今天高亮
+                minView: "month",//设置只显示到月份
+                startView:2,
+                forceParse: 0,
+                showMeridian: 1,
+                autoclose: 1//选择后自动关闭
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+        <script src="../static/scripts/main.js"></script>
+    </body>
 </html>

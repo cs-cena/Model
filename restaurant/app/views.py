@@ -25,7 +25,7 @@ def close_connection(exception):
         db.close()
 
 
-#查询数据
+#查询数据接口
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
@@ -33,14 +33,15 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-#插入数据 db是数据库链接可以作提交，cur是游标不能作提交，只能查询和关闭
+#插入数据接口 db是数据库链接可以作提交，cur是游标不能作提交，只能查询和关闭
 def save_db(query, args=()):
     db = get_db()
     cur = db.execute(query, args)
     cur.close()
     db.commit()
-    
 
+
+#查询数据
 @app.route('/data', methods=['GET'])
 def data():
 
@@ -57,6 +58,7 @@ def data():
                         did=[i[1] for i in res] )
 
 
+#渲染主页
 @app.route('/menu', methods=['GET'])
 def menu():
     return render_template("menu.html")
@@ -83,4 +85,11 @@ def test_js(json_name):
         return json.dumps(jsonStr)
 
 
+#flask接收客户端的form数据
+@app.route('/diary', methods=["POST"])
+def diary():
+    diary_context = request.form.get("diary-context")
+    return jsonify(diary_context)
 
+
+#http://127.0.0.1:5000/menu
