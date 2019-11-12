@@ -16,7 +16,9 @@ const diaryBtn = document.querySelector("#diaryBtn")
 /*to do: 
 *1 按diary-section生成对应element。
 *1.1 完成 日期选择、餐厅选择。生成对应html的dom结构。
-*2 获取提交内容 
+*2 获取提交内容
+*难点：直接form提交 会跳转 因此希望用异步提交表单
+*未解决： 1 js如何获得前端form数据 2 用fetch异步post
 *3 在考虑是从服务端接收数据，还是从html接收。
 */
 function createDiaryTxt() {
@@ -39,7 +41,30 @@ function createDiaryTxt() {
 }
 
 diaryBtn.onclick = function() {
+    
+    let diaryContext = document.querySelector("#diaryContext")
+    console.log(diaryContext.textContent)
+
+    /*
+    let req = new Request("/diary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        mode: "cors",
+        body: JSON.stringify(menuJson)
+    })
+
+    return fetch(req)
+    .then(function(response) {
+        if(response.ok) {
+            return response.json()          
+        }
+    })
+    .then(function(json) {
+        console.log(json)   
+    })
+
     createDiaryTxt()
+    */
 }
 
 

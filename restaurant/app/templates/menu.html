@@ -195,14 +195,15 @@
                         </div>
                     </div>
                     <!--文本输入-->
-                    <form action="/diary" method="POST">
+                    <!-- <form action="/diary" method="POST" id="diaryForm"> -->
+                    <form>
                         <div class="form-group">
                             <label for="diaryDate">日期：</label>
-                            <input type="text" class="form-control" id="diaryDate">
+                            <input type="text" class="form-control" name="diary-date" id="diaryDate" >
                         </div>
                         <div class="form-group">
-                            <label for="diaryRest">餐厅：</label>
-                            <select class="form-control" name="diaryRest">
+                            <label for="diaryRestaurant">餐厅：</label>
+                            <select class="form-control" name="diary-restaurant" id="diaryRestaurant">
                               <option>麦当劳</option>
                               <option>肯德基</option>
                               <option>汉堡王</option>
@@ -210,8 +211,8 @@
                             </select>
                         </div>                        
                         <div class="form-group">
-                            <label for="diary">肥宅快乐记录：</label>
-                            <textarea class="form-control" name="diary-context" rows="10"></textarea>
+                            <label for="diaryContext">肥宅快乐记录：</label>
+                            <textarea class="form-control" name="diary-context" id="diaryContext" rows="10"></textarea>
                         </div>
                         <button type="button" class="btn btn-default" id='diaryBtn'>提交</button>
                         <button type="button" class="btn btn-default">重置</button>

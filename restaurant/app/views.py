@@ -88,8 +88,15 @@ def test_js(json_name):
 #flask接收客户端的form数据
 @app.route('/diary', methods=["POST"])
 def diary():
-    diary_context = request.form.get("diary-context")
-    return jsonify(diary_context)
+    date = request.form.get("diary-date")
+    restaurant = request.form.get("diary-restaurant")
+    context = request.form.get("diary-context")
+    info = {
+        "date": date,
+        "restaurant": restaurant,
+        "context": context
+    }
+    return jsonify(info)
 
 
 #http://127.0.0.1:5000/menu
