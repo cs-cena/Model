@@ -64,7 +64,7 @@ def menu():
     return render_template("menu.html")
 
 
-#flask接收客户端post的json数据
+#flask接收客户端post的json数据，并写入本地sqlite3数据库
 @app.route('/menulist', methods=["POST"])
 def menu_list():
     if request.method == "POST":
@@ -85,18 +85,26 @@ def test_js(json_name):
         return json.dumps(jsonStr)
 
 
-#flask接收客户端的form数据
+#flask接收客户端的<form action="/diary" method="POST">直接发的数据
+@app.route('/xxx', methods=["POST"])
+def xxx():
+    if request.method == "POST":    
+        date = request.form.get("diary-date")
+        restaurant = request.form.get("diary-restaurant")
+        context = request.form.get("diary-context")
+        info = {
+            "date": date,
+            "restaurant": restaurant,
+            "context": context
+        }
+        return jsonify(info)
+
+
+#flask接收客户端的<form>但用js异步发的数据
 @app.route('/diary', methods=["POST"])
 def diary():
-    date = request.form.get("diary-date")
-    restaurant = request.form.get("diary-restaurant")
-    context = request.form.get("diary-context")
-    info = {
-        "date": date,
-        "restaurant": restaurant,
-        "context": context
-    }
-    return jsonify(info)
-
+    if request.method == "POST":
+        rq = json.loads(request.get_data().decode('utf-8'))
+        return jsonify(rq)
 
 #http://127.0.0.1:5000/menu

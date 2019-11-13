@@ -13,44 +13,72 @@ const diaryBtn = document.querySelector("#diaryBtn")
 
 
 //---------- diary ---------- 
-/*to do: 
+/* 
 *1 按diary-section生成对应element。
-*1.1 完成 日期选择、餐厅选择。生成对应html的dom结构。
+*已解决： 1 日期选择、餐厅选择 2 生成对应html的dom结构
 *2 获取提交内容
 *难点：直接form提交 会跳转 因此希望用异步提交表单
-*未解决： 1 js如何获得前端form数据 2 用fetch异步post
-*3 在考虑是从服务端接收数据，还是从html接收。
+*已解决： 1 js如何获得前端form数据 2 用fetch异步post 3 时间格式转换
+
+to do:
+*3.1 建diary表
+*3.2 添加新记录时，写进数据库。
+*3.3 初始/刷新渲染时从数据库里拿过去5次的diary记录并显示。
 */
-function createDiaryTxt() {
+
+//时间格式转换 如"2019-11-12"转成"2019年11月12日"
+function date_transform(date) {
+    let d = new Date(date)
+    year = d.getUTCFullYear()//年
+    month = d.getMonth()+1 //月 原型里0-1
+    day = d.getDate() //日
+    date = year+"年"+month+"月"+day+"日"
+    return date
+}
+
+//在html添加新一天的diary记录
+function createDiaryTxt(json) {
     let ds = document.createElement("div")
     ds.setAttribute("class", "diary-section")
     diary.appendChild(ds)
 
     let h = document.createElement("h3")
+    h.textContent = date_transform(json["date"]) + " " + json["restaurant"]    
     ds.appendChild(h)
 
     let dc = document.createElement("div")
     dc.setAttribute("class", "diary-context")
     ds.appendChild(dc)
 
-    let newContent = document.createTextNode("DDD")
+    let newContent = document.createTextNode(json["context"])
     dc.appendChild(newContent)
 
     let hr = document.createElement("hr")
     ds.appendChild(hr)
 }
 
+//当按“提交”按钮时，想服务器发送表单数据，并在html上添加新的diary记录
 diaryBtn.onclick = function() {
-    
-    let diaryContext = document.querySelector("#diaryContext")
-    console.log(diaryContext.textContent)
 
-    /*
+    let diaryDate = document.querySelector('#diaryDate')
+    let diaryRestaurant = document.querySelector('#diaryRestaurant')
+    let diaryContext = document.querySelector("#diaryContext")
+
+    //console.log(diaryContext.value)    
+    //console.log(diaryDate.value)    
+    //console.log(diaryRestaurant.value)
+
+    diaryJson = {
+        "date": diaryDate.value,
+        "restaurant": diaryRestaurant.value,
+        "context": diaryContext.value
+    }
+    
     let req = new Request("/diary", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         mode: "cors",
-        body: JSON.stringify(menuJson)
+        body: JSON.stringify(diaryJson)
     })
 
     return fetch(req)
@@ -60,13 +88,14 @@ diaryBtn.onclick = function() {
         }
     })
     .then(function(json) {
-        console.log(json)   
-    })
+        //console.log(json)
+        createDiaryTxt(json)
 
-    createDiaryTxt()
-    */
+    })
+    
 }
 
+//---------- /diary ----------
 
 //---------- menu ----------
 
@@ -96,11 +125,10 @@ function sumPrices() {
     return  totalPrice
 }
 
-
 //menuJson = {"":[]}
 let menuJson = {}
 
-//加减按钮
+//加按钮
 for (let i = 0; i < plusBtns.length; i++) {
     plusBtns[i].onclick  = function() {
         mealAmounts[i].textContent++
@@ -115,7 +143,7 @@ for (let i = 0; i < plusBtns.length; i++) {
     }
 }
 
-
+//减按钮
 for (let i = 0; i < minusBtns.length; i++) {
     minusBtns[i].onclick  = function() {
         let ma = mealAmounts[i].textContent
