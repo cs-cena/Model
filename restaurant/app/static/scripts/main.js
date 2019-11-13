@@ -9,8 +9,11 @@ const mealName =  document.querySelectorAll("#mealName")
 //diary
 const diary = document.querySelector("#diary")
 const dairyTxt = document.querySelector("textarea")
-const diaryBtn = document.querySelector("#diaryBtn")
-
+const diarySendBtn = document.querySelector("#diarySendBtn")
+const diaryDate = document.querySelector("#diaryDate")
+const diaryRestaurant = document.querySelector("#diaryRestaurant")
+const diaryContext = document.querySelector("#diaryContext")
+const diaryResetBtn = document.querySelector("#diaryResetBtn")
 
 //---------- diary ---------- 
 /* 
@@ -57,16 +60,20 @@ function createDiaryTxt(json) {
     ds.appendChild(hr)
 }
 
+//清空date restaurant context的内容
+function clean() {
+    diaryDate.value = ""
+    diaryRestaurant.value = ""
+    diaryContext.value = ""
+}
+
+//“重置”按钮
+diaryResetBtn.onclick = function() {
+    clean()
+}
+
 //当按“提交”按钮时，想服务器发送表单数据，并在html上添加新的diary记录
-diaryBtn.onclick = function() {
-
-    let diaryDate = document.querySelector('#diaryDate')
-    let diaryRestaurant = document.querySelector('#diaryRestaurant')
-    let diaryContext = document.querySelector("#diaryContext")
-
-    //console.log(diaryContext.value)    
-    //console.log(diaryDate.value)    
-    //console.log(diaryRestaurant.value)
+diarySendBtn.onclick = function() {
 
     diaryJson = {
         "date": diaryDate.value,
@@ -90,9 +97,8 @@ diaryBtn.onclick = function() {
     .then(function(json) {
         //console.log(json)
         createDiaryTxt(json)
-
-    })
-    
+        clean()
+    })  
 }
 
 //---------- /diary ----------
