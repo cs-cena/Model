@@ -22,11 +22,10 @@ const diaryResetBtn = document.querySelector("#diaryResetBtn")
 *2 获取提交内容
 *难点：直接form提交 会跳转 因此希望用异步提交表单
 *已解决： 1 js如何获得前端form数据 2 用fetch异步post 3 时间格式转换
-
-to do:
-*3.1 建diary表
-*3.2 添加新记录时，写进数据库。
-*3.3 初始/刷新渲染时从数据库里拿过去5次的diary记录并显示。
+*3 diary数据交流
+*已解决：3.1 建diary表 date TEXT restaurant TEXT dtext TEXT
+*已解决：3.2 添加新记录时，写进数据库。
+*已解决：3.3 初始/刷新渲染时从数据库里拿过去5次的diary记录并显示。
 */
 
 //时间格式转换 如"2019-11-12"转成"2019年11月12日"
@@ -66,6 +65,24 @@ function clean() {
     diaryRestaurant.value = ""
     diaryContext.value = ""
 }
+
+//页面初始/刷新加载后，diary内容显示最新的5条
+window.onload=function() {
+    return fetch("/diary")
+        .then(function(response) {
+            if(response.ok) {
+                return response.json()          
+            }
+        })
+        .then(function(json) {
+            //
+            for(let i=0; i<json.length; i++) {
+                createDiaryTxt(json[i])
+                //console.log(json[i])
+            }
+        })  
+}
+
 
 //“重置”按钮
 diaryResetBtn.onclick = function() {

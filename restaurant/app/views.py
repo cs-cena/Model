@@ -101,10 +101,33 @@ def xxx():
 
 
 #flask接收客户端的<form>但用js异步发的数据
-@app.route('/diary', methods=["POST"])
+@app.route('/diary', methods=["POST", "GET"])
 def diary():
     if request.method == "POST":
         rq = json.loads(request.get_data().decode('utf-8'))
+        sql = 'insert into diary(dTime, restaurant, dText) values(?, ?, ?)'
+        diary_arr = [rq["date"], rq["restaurant"], rq["context"]]
+        save_db(sql, diary_arr)
         return jsonify(rq)
+
+    elif request.method == "GET":
+        res = query_db( 
+        '''
+            SELECT * FROM diary
+            ORDER BY dtime DESC
+            LIMIT 2
+        '''
+        )
+
+        diary_list = []      
+        for i in res:
+            diary_sec = {} 
+            diary_sec["date"] = i[0]
+            diary_sec["restaurant"] = i[1]
+            diary_sec["context"] = i[2]
+            diary_list.append(diary_sec)
+
+        return jsonify(diary_list)
+
 
 #http://127.0.0.1:5000/menu

@@ -20,11 +20,10 @@ if __name__ == '__main__':
 
     print("Opened database successfully")
 
-    cur.execute('''CREATE TABLE test (
-        meal TEXT, 
-        amount INTEGER, 
-        total REAL
-    );''')
+    cur.execute('''
+    insert into diary values
+    ('2019-11-09', '麦当劳', '今天点了正在搞会员价的麦辣鸡腿汉堡，原来想点辣翅，但是中午才吃了烤鸭，已经吃油了想想就算了，所以就再选了12元随心配——锡兰红茶+麦乐鸡块。因为红茶太烫了，就要了点冰块。棒！不过后来加多了，茶凉了。');
+    ''')
 
     #print(cur.fetchall())
 
