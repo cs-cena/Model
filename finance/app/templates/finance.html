@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Finance</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/styles/bootstrap-datetimepicker.css">
+        <link rel="stylesheet" href="../static/styles/finance-style.css">
+        <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+        <script src="../static/scripts/bootstrap-datetimepicker.js"></script>        
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <!-- 侧边导航栏 -->
+                <div class="col-md-2">
+                    <nav class="navbar navbar-default navbar-left">                 
+                        <ul class="nav nav-stacked">
+                            <li role="presentation" class="active"><a href="#">Home</a></li>
+                            <li role="presentation"><a href="#">Profile</a></li>
+                            <li role="presentation"><a href="#">Messages</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-md-7">
+                    <div id="eTable1" style="width:600px; height:400px;"></div>       
+                </div>
+            </div>
+        </div>
+        <!-- Echarts图表 动态更新数据-->
+        <script>
+
+            function get_data() {
+                fetch("/dailycost")
+                    .then(function(response) {
+                        if(response.ok) {
+                            //读出返回值
+                            json = response.json()
+                            return json
+                        }
+                    })
+                    .then(function(json) {
+
+                    })                
+            }
+
+            var myChart = echarts.init(document.querySelector('#eTable1'));
+
+            myChart.setOption({
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name: "random",
+                    data: [],
+                    type: 'line'
+                }]
+            });
+
+
+            myChart.setOption({
+                xAxis: {
+                    data: data2
+                },
+                series: [{
+                    name: 'random',
+                    data: data
+                }]
+            });
+            // 异步加载数据
+            /*
+            $.get('/db/kanong').done(function (data) {
+                // 填入数据
+                myChart.setOption({
+                    xAxis: {
+                        data: data.usergroup
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: 'uid计数',
+                        data: data.countuid
+                    }]
+                });
+            });
+            */
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+        <script src="../static/scripts/finance.js"></script>        
+    </body>
+
+</html>

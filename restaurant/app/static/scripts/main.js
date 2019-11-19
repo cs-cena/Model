@@ -15,6 +15,7 @@ const diaryRestaurant = document.querySelector("#diaryRestaurant")
 const diaryContext = document.querySelector("#diaryContext")
 const diaryResetBtn = document.querySelector("#diaryResetBtn")
 
+
 //---------- diary ---------- 
 /* 
 *1 按diary-section生成对应element。
@@ -27,6 +28,7 @@ const diaryResetBtn = document.querySelector("#diaryResetBtn")
 *已解决：3.2 添加新记录时，写进数据库。
 *已解决：3.3 初始/刷新渲染时从数据库里拿过去5次的diary记录并显示。
 */
+
 
 //时间格式转换 如"2019-11-12"转成"2019年11月12日"
 function date_transform(date) {
@@ -119,6 +121,7 @@ diarySendBtn.onclick = function() {
 }
 
 //---------- /diary ----------
+
 
 //---------- menu ----------
 

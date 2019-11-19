@@ -1,0 +1,1 @@
+CREATE TABLE dealRecord (fDate TEXT,fTime TEXT,fPay REAL,fReceive REAL,fBalance REAL,fDeal TEXT,fDealDetail TEXT,fClass TEXT,fClassDetail TEXT);"fDate","fTime","fPay","fReceive","fBalance","fDeal","fDealDetail","fClass","fClassDetail"
