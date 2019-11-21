@@ -64,22 +64,19 @@ def finance():
 
 
 #flask接收客户端的get请求，查询数据库 并返回json给客户端
-@app.route('/dailycost', methods=['GET'])
-def dailycost():
+@app.route('/invest', methods=['GET'])
+def invest():
     if request.method == "GET":
         res = query_db( 
         '''
-            SELECT * FROM dealrecord
-            
-            LIMIT 2
+        SELECT strftime("%Y-%m", fdate) AS date, sum(fpay)
+        FROM dealRecord
+        WHERE fclass in ("P2P投资", "P2P还款")
+        GROUP BY strftime("%Y-%m", fdate)
+        ORDER BY date DESC
+        LIMIT 12
         '''
         )
 
-        daily_list = []  
-        #i就是一行数据    
-        for i in res:
-            daily_sec = {} 
-            daily_sec["date"] = i[0]
-            daily_list.append(daily_sec)
-
-    return jsonify(diary_list)
+    return jsonify(date = [i[0] for i in res],
+                    invest = [i[1] for i in res])
