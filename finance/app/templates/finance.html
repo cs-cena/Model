@@ -21,21 +21,166 @@
                       <li role="presentation" class="active"><a href="#">HOME</a></li>
                       <li role="presentation"><a href="#">日常消费</a></li>
                       <li role="presentation"><a href="#">投资</a></li>
-                      <li role="presentation"><a href="#">谈朋友</a></li>
+                      <li role="presentation"><a href="#">朋友</a></li>
                       <li role="presentation"><a href="#">负债</a></li>                      
                     </ul>
                 </div>
                 <div class="col-md-7">
-                    <div id="eTable1" style="width:600px; height:400px;"></div>       
-                </div>
+                    <div id="total" style="width:600px; height:400px;"></div>
+                    <div id="invest" style="width:600px; height:400px;"></div>
+                    <div id="debt" style="width:600px; height:400px;"></div>
+                    <div id="gf" style="width:600px; height:400px;"></div>     
+                </div>              
             </div>
         </div>
         <!-- Echarts图表 动态更新数据-->
         <script>
+            var myChartTotal = echarts.init(document.querySelector('#total'));
 
-            var myChart = echarts.init(document.querySelector('#eTable1'));
+            myChartTotal.setOption ({
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['餐费', '麦当劳','交通费','杂类支出','负债还款','投资']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis:  {
+                    type: 'value'
+                },
+                yAxis: {
+                    type: 'category',
+                    data: []
+                },
+                series: [
+                    {
+                        name: '餐费',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: []
+                    },
+                    {
+                        name: '麦当劳',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: []
+                    },
+                    {
+                        name: '交通费',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: []
+                    },
+                    {
+                        name: '杂类支出',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: []
+                    },
+                    {
+                        name: '负债还款',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: []
+                    },
+                    {
+                        name: '投资',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: []
+                    }                    
+                ]
+            });
+            
+            fetch("/total")
+                .then(function(response) {
+                    if(response.ok) {
+                        json = response.json()
+                        return json
+                    }
+                })
+                .then(function(json) {
+                     myChartTotal.setOption({
+                        yAxis: {
+                            data: json['date'].reverse()
+                        },
+                        series: [
+                            {
+                                name: '餐费',
+                                data: json['meal'].reverse()
+                            },
+                            {
+                                name: '麦当劳',
+                                data: json['mc'].reverse()
+                            },
+                            {
+                                name: '交通费',
+                                data: json['traffic'].reverse()
+                            },                        
+                            {
+                                name: '杂类支出',
+                                data: json['other'].reverse()
+                            },
+                            {
+                                name: '负债还款',
+                                data: json['debt'].reverse()
+                            },
+                            {
+                                name: '投资',
+                                data: json['invest'].reverse()
+                            }
+                        ]
+                    });                        
+                })
+        </script>        
+        <script>
+            var myChartInvest = echarts.init(document.querySelector('#invest'));
 
-            myChart.setOption({
+            myChartInvest.setOption({
                 title: {
                     text: '近12个月P2P投资额'
                 },
@@ -62,7 +207,7 @@
                     }
                 })
                 .then(function(json) {
-                     myChart.setOption({
+                     myChartInvest.setOption({
                         xAxis: {
                             data: json['date'].reverse()
                         },
@@ -72,8 +217,89 @@
                         }]
                     });                        
                 })
-
         </script>
+        <script>
+            var myChartDebt = echarts.init(document.querySelector('#debt'));
+
+            myChartDebt.setOption({
+                title: {
+                    text: '近12个月负债还款'
+                },
+                tooltip: {},
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name: "debt",
+                    data: [],
+                    type: 'line'
+                }]
+            });
+
+            fetch("/debt")
+                .then(function(response) {
+                    if(response.ok) {
+                        json = response.json()
+                        return json
+                    }
+                })
+                .then(function(json) {
+                     myChartDebt.setOption({
+                        xAxis: {
+                            data: json['date'].reverse()
+                        },
+                        series: [{
+                            name: 'debt',
+                            data: json['debt'].reverse()
+                        }]
+                    });                        
+                })
+        </script>
+        <script>
+            var myChartGf = echarts.init(document.querySelector('#gf'));
+
+            myChartGf.setOption({
+                title: {
+                    text: '近12个月恋爱花费'
+                },
+                tooltip: {},
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name: "gf",
+                    data: [],
+                    type: 'line'
+                }]
+            });
+
+            fetch("/gf")
+                .then(function(response) {
+                    if(response.ok) {
+                        json = response.json()
+                        return json
+                    }
+                })
+                .then(function(json) {
+                     myChartGf.setOption({
+                        xAxis: {
+                            data: json['date'].reverse()
+                        },
+                        series: [{
+                            name: 'gf',
+                            data: json['gf'].reverse()
+                        }]
+                    });                        
+                })
+        </script>        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
         <script src="../static/scripts/finance.js"></script>        
     </body>

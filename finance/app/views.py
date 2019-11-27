@@ -72,7 +72,7 @@ def invest():
         SELECT strftime("%Y-%m", fdate) AS date, sum(fpay)
         FROM dealRecord
         WHERE fclass in ("P2P投资", "P2P还款")
-        GROUP BY strftime("%Y-%m", fdate)
+        GROUP BY date
         ORDER BY date DESC
         LIMIT 12
         '''
@@ -80,3 +80,68 @@ def invest():
 
     return jsonify(date = [i[0] for i in res],
                     invest = [i[1] for i in res])
+
+
+@app.route('/debt', methods=['GET'])
+def debt():
+    if request.method == "GET":
+        res = query_db( 
+        '''
+        SELECT strftime("%Y-%m", fdate) AS date, sum(fpay)
+        FROM dealRecord
+        WHERE fclass in ("信贷还款", "百度还款")
+        GROUP BY date
+        ORDER BY date DESC
+        LIMIT 12
+        '''
+        )
+
+    return jsonify(date = [i[0] for i in res],
+                    debt = [i[1] for i in res])
+
+
+@app.route('/gf', methods=['GET'])
+def gf():
+    if request.method == "GET":
+        res = query_db( 
+        '''
+        SELECT strftime("%Y-%m", fdate) AS date, sum(fpay)
+        FROM dealRecord
+        WHERE fClassDetail LIKE "%雅%"
+        GROUP BY date
+        ORDER BY date DESC
+        LIMIT 12
+        '''
+        )
+
+    return jsonify(date = [i[0] for i in res],
+                    gf = [i[1] for i in res])
+
+
+@app.route('/total', methods=['GET'])
+def total():
+    if request.method == "GET":
+        res = query_db( 
+        '''
+        SELECT strftime("%Y-%m", fdate) AS date, 
+        sum(case when fclass in ("工作餐", "周末餐费") then fpay end) meal,
+        sum(case when fclass in ("麦当劳") then fpay end) mc,
+        sum(case when fclass in ("交通费") then fpay end) traffic,
+        sum(case when fclass in ("杂类支出") then fpay end) other,
+        sum(case when fclass in ("信贷还款", "百度还款") then fpay end) debt,
+        sum(case when fclass in ("P2P投资", "P2P还款") then fpay end) invest
+        FROM dealRecord
+        GROUP BY date
+        ORDER BY date DESC
+        LIMIT 12
+        '''
+        )
+
+    return jsonify(date = [i[0] for i in res],
+                   meal = [i[1] for i in res],
+                   mc = [i[2] for i in res],
+                   traffic = [i[3] for i in res],
+                   other = [i[4] for i in res],
+                   debt = [i[5] for i in res],
+                   invest = [i[6] for i in res],
+                    )
