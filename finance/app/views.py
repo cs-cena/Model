@@ -105,9 +105,10 @@ def gf():
     if request.method == "GET":
         res = query_db( 
         '''
-        SELECT strftime("%Y-%m", fdate) AS date, sum(fpay)
-        FROM dealRecord
-        WHERE fClassDetail LIKE "%雅%"
+        SELECT strftime("%Y-%m", fdate) AS date,
+        sum(case when fClassDetail LIKE "%雅%" then fpay end) gfPay,
+        sum(case when fClassDetail NOT LIKE "%雅%" and fclass = "杂类支出" then fpay end) otherPay
+        from dealRecord
         GROUP BY date
         ORDER BY date DESC
         LIMIT 12
@@ -115,7 +116,8 @@ def gf():
         )
 
     return jsonify(date = [i[0] for i in res],
-                    gf = [i[1] for i in res])
+                    gfpay = [i[1] for i in res],
+                    otherpay = [i[2] for i in res],)
 
 
 @app.route('/total', methods=['GET'])

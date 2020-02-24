@@ -27,14 +27,14 @@
                 </div>
                 <div class="col-md-7">
                     <div id="total" style="width:600px; height:400px;"></div>
+                    <div id="gf" style="width:600px; height:400px;"></div>  
                     <div id="invest" style="width:600px; height:400px;"></div>
-                    <div id="debt" style="width:600px; height:400px;"></div>
-                    <div id="gf" style="width:600px; height:400px;"></div>     
+                    <div id="debt" style="width:600px; height:400px;"></div>   
                 </div>              
             </div>
         </div>
         <!-- Echarts图表 动态更新数据-->
-        <script>
+         <script>
             var myChartTotal = echarts.init(document.querySelector('#total'));
 
             myChartTotal.setOption ({
@@ -65,74 +65,38 @@
                         name: '餐费',
                         type: 'bar',
                         stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'insideRight'
-                            }
-                        },
                         data: []
                     },
                     {
                         name: '麦当劳',
                         type: 'bar',
                         stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'insideRight'
-                            }
-                        },
                         data: []
                     },
                     {
                         name: '交通费',
                         type: 'bar',
                         stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'insideRight'
-                            }
-                        },
                         data: []
                     },
                     {
                         name: '杂类支出',
                         type: 'bar',
                         stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'insideRight'
-                            }
-                        },
                         data: []
                     },
                     {
                         name: '负债还款',
                         type: 'bar',
                         stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'insideRight'
-                            }
-                        },
                         data: []
                     },
                     {
                         name: '投资',
                         type: 'bar',
                         stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'insideRight'
-                            }
-                        },
                         data: []
-                    }                    
+                    }
                 ]
             });
             
@@ -160,7 +124,7 @@
                             {
                                 name: '交通费',
                                 data: json['traffic'].reverse()
-                            },                        
+                            },
                             {
                                 name: '杂类支出',
                                 data: json['other'].reverse()
@@ -174,9 +138,9 @@
                                 data: json['invest'].reverse()
                             }
                         ]
-                    });                        
+                    });
                 })
-        </script>        
+        </script>
         <script>
             var myChartInvest = echarts.init(document.querySelector('#invest'));
 
@@ -219,6 +183,73 @@
                 })
         </script>
         <script>
+            var myChartGf = echarts.init(document.querySelector('#gf'));
+
+            myChartGf.setOption ({
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['谈朋友', '其他杂类支出']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis:  {
+                    type: 'value'
+                },
+                yAxis: {
+                    type: 'category',
+                    data: []
+                },
+                series: [
+                    {
+                        name: '谈朋友',
+                        type: 'bar',
+                        stack: '总量',
+                        data: []
+                    },
+                    {
+                        name: '其他杂类支出',
+                        type: 'bar',
+                        stack: '总量',
+                        data: []
+                    }                  
+                ]
+            });
+            
+            fetch("/gf")
+                .then(function(response) {
+                    if(response.ok) {
+                        json = response.json()
+                        return json
+                    }
+                })
+                .then(function(json) {
+                     myChartGf.setOption({
+                        yAxis: {
+                            data: json['date'].reverse()
+                        },
+                        series: [
+                            {
+                                name: '谈朋友',
+                                data: json['gfpay'].reverse()
+                            },
+                            {
+                                name: '其他杂类支出',
+                                data: json['otherpay'].reverse()
+                            },
+                        ]
+                    });                        
+                })               
+        </script>
+        <script>
             var myChartDebt = echarts.init(document.querySelector('#debt'));
 
             myChartDebt.setOption({
@@ -258,48 +289,7 @@
                         }]
                     });                        
                 })
-        </script>
-        <script>
-            var myChartGf = echarts.init(document.querySelector('#gf'));
-
-            myChartGf.setOption({
-                title: {
-                    text: '近12个月恋爱花费'
-                },
-                tooltip: {},
-                xAxis: {
-                    type: 'category',
-                    data: []
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    name: "gf",
-                    data: [],
-                    type: 'line'
-                }]
-            });
-
-            fetch("/gf")
-                .then(function(response) {
-                    if(response.ok) {
-                        json = response.json()
-                        return json
-                    }
-                })
-                .then(function(json) {
-                     myChartGf.setOption({
-                        xAxis: {
-                            data: json['date'].reverse()
-                        },
-                        series: [{
-                            name: 'gf',
-                            data: json['gf'].reverse()
-                        }]
-                    });                        
-                })
-        </script>        
+        </script>       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
         <script src="../static/scripts/finance.js"></script>        
     </body>
