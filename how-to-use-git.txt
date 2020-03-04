@@ -14,5 +14,7 @@ git branch -d temp
 git add .
 (选择更新远程仓库到本地 git pull origin master)
 git commit -m '内容'
-git push -u origin master
+git pull
+wq
+git push origin master
 
